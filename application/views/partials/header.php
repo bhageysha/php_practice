@@ -35,4 +35,4 @@
 		
 	</div>
 </div>
-
+<?php $this->load->view('partials/messages'); ?>

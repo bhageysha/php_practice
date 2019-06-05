@@ -21,8 +21,9 @@ class Auth extends CI_Controller {
 	public function login()
 	{
 		if(!empty($_GET)){
-			echo "<pre>";
-			print_r($_GET);
+
+			$password_verified = $this->verifyPassword($_GET['name'],$_GET['password']);
+			print_r($password_verified);
 			exit;
 		}
 		
@@ -30,6 +31,23 @@ class Auth extends CI_Controller {
 		
 	}
 	
+	function verifyPassword($email,$password){
+		$this->load->helper('messages');
+		$query = $this->db->where('email', $email);
+		$query = $this->db->get('3424sds_users');
+		$record = $query->result();	
+		
+		$v = password_verify($password, $record[0]->password);
+		if(!$v){
+			failure('Either username or password is incorrect');
+			redirect('auth/login');
+		}
+		echo "<pre>";
+		print_r($record);
+		exit;
+
+	} 
+
 	function logout(){
 
 	}
@@ -38,6 +56,8 @@ class Auth extends CI_Controller {
 
 // return $query->result_array();
 	function register(){
+
+		$this->load->helper('messages');
 
 		if(!empty($_GET)){
 
@@ -48,8 +68,10 @@ class Auth extends CI_Controller {
 
 			$rexord_exists = $this->checkIfRecordExists($data);
 
-			if($rexord_exists)
+			if($rexord_exists){
+				failure('Record already exists');
 				redirect('auth/register');
+			}
 
 			$data['role'] = 'PATIENT';
 
@@ -62,7 +84,7 @@ class Auth extends CI_Controller {
 			unset($data['confirm_password']);
 			
 			$this->db->insert('3424sds_users', $data);
-
+			success('Registration Successful');
 			redirect('auth/login');
 				
 		}
