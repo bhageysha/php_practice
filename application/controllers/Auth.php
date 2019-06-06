@@ -20,12 +20,18 @@ class Auth extends CI_Controller {
 	 */
 	public function login()
 	{
+		$this->load->helper('auth');
+
 		if(!empty($_GET)){
 
-			$password_verified = $this->verifyPassword($_GET['name'],$_GET['password']);
-			print_r($password_verified);
-			exit;
+			$this->verifyPassword($_GET['name'],$_GET['password']);
+			if(get_user()->role == 'PATIENT'){
+				echo "test";
+				redirect('patient/index');
+			}
 		}
+
+
 		
 		$this->load->view('auth/login');
 		
@@ -36,20 +42,22 @@ class Auth extends CI_Controller {
 		$query = $this->db->where('email', $email);
 		$query = $this->db->get('3424sds_users');
 		$record = $query->result();	
-		
+
 		$v = password_verify($password, $record[0]->password);
 		if(!$v){
 			failure('Either username or password is incorrect');
 			redirect('auth/login');
 		}
-		echo "<pre>";
-		print_r($record);
-		exit;
+
+		$this->session->set_userdata('user', $record[0]);
+
+     	return true;
 
 	} 
 
 	function logout(){
-
+		$this->session->sess_destroy();
+		redirect('auth/login');
 	}
 
 // 	$query = $this->db->query($SQL);
