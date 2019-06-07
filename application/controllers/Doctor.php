@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Patient extends CI_Controller {
+class Doctor extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -20,12 +20,8 @@ class Patient extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('patient/home');
+		$this->load->view('doctor/home');
 		
-	}
-
-	public function registration(){
-		$this->load->view('patient/registration');
 	}
 
 	

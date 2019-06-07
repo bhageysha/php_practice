@@ -6,7 +6,7 @@
 			<form>
 				<div class="form-group">
 					<label>Enter email</label>
-					<input type="text" name="name" class="form-control">
+					<input type="text" name="email" class="form-control">
 				</div>
 				<div class="form-group">
 					<label>Enter Password</label>

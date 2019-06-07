@@ -24,15 +24,16 @@ class Auth extends CI_Controller {
 
 		if(!empty($_GET)){
 
-			$this->verifyPassword($_GET['name'],$_GET['password']);
+			$this->verifyPassword($_GET['email'],$_GET['password']);
+			
 			if(get_user()->role == 'PATIENT'){
-				echo "test";
 				redirect('patient/index');
+			}else if(get_user()->role == 'DOCTOR'){
+					redirect('doctor/index');
 			}
+
 		}
 
-
-		
 		$this->load->view('auth/login');
 		
 	}
@@ -44,6 +45,7 @@ class Auth extends CI_Controller {
 		$record = $query->result();	
 
 		$v = password_verify($password, $record[0]->password);
+
 		if(!$v){
 			failure('Either username or password is incorrect');
 			redirect('auth/login');

@@ -1,0 +1,1 @@
+  <li><a href="<?=site_url('auth/logout')?>">Add Booking</a></li>
