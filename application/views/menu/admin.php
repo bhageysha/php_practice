@@ -1,0 +1,1 @@
+  <li><a href="<?=site_url('admin/add_doctor')?>">Add Doctor</a></li>

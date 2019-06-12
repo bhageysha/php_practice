@@ -25,7 +25,14 @@ class Patient extends CI_Controller {
 	}
 
 	public function registration(){
-		$this->load->view('patient/registration');
+		$data = [
+			'name' => 'Agarwal',
+			'field' => 'ENT',
+	    ];
+
+		$this->load->view('patient/registration',[
+			'data' => $data
+		]);
 	}
 
 	

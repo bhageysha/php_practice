@@ -2,12 +2,9 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<h2 class="text-center">Book Appointment</h2>
-			<?php 
-				echo "<pre>";
-				print_r($data);
-				exit; 
-			?>			
+			<h4 class="text-center">
+				Admin Dashboard
+			</h4>
 		</div>
 	</div>
 </div>
