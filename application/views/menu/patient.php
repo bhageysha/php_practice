@@ -1,0 +1,1 @@
+  <li><a href="<?=site_url('patient/registration')?>">Add Booking</a></li>
