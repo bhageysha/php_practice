@@ -25,6 +25,7 @@ class Admin extends CI_Controller {
 	}
 
 	public function add_doctor(){
+
 		// $query = $this->db->where('email', $data['email']);/**/
 		$query = $this->db->get('3424sds_doctor_specialisations');
 		$specialisations = $query->result();
@@ -42,6 +43,8 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/view_doctors',[
 			'doctors' => $doctors 
 		]);
+
+
 
 	}
 
