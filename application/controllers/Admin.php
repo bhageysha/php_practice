@@ -35,6 +35,26 @@ class Admin extends CI_Controller {
 		]);
 	}
 
+	public function delete_doctor($id){
+		$this->load->helper('messages');
+		$this ->db->where('id', $id);
+        $this ->db->delete('3424sds_users');
+        success('Record Deleted');
+        redirect('admin/view_doctors');
+	}
+
+	public function edit_doctor($id){
+
+		$query = $this->db->where('id', $id);
+		$query = $this->db->get('3424sds_users');
+		$doctor = $query->result();
+		
+		$this->load->view('admin/edit_doctor',[
+			'doctor' => $doctor[0]
+		]);
+		
+	}
+
 	public function view_doctors(){
 		$query = $this->db->where('role','DOCTOR');
 		$query = $this->db->get('3424sds_users');
