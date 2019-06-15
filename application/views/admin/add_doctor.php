@@ -48,7 +48,7 @@
 
 			</form>
 		</div>
-		<div class="col-md-4">		</div>
+		<div class="col-md-4"></div>
 	</div>
 </div>
 <?php $this->load->view('auth/footer'); ?>
