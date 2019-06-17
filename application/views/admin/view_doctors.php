@@ -19,7 +19,7 @@
 						<td><?=date('M d, Y', strtotime($doc->registration_date))?></td>				 		
 						<td>
 							<a href="<?=site_url('admin/edit_doctor/'.$doc->id)?>"><button class="btn btn-warning">Edit</button></a>
-							<a  onclick="return confirm('Are you sure you want to delete this user?');" href="<?=site_url('admin/delete_doctor/'.$doc->id)?>"><button class="btn btn-danger">Delete</button></a>
+							<a  onclick="return confirm('Are you sure you want to delete this user?');" href="<?=site_url('admin/delete_doctor/'.$doc->id)?>"><button class="btn btn-danger">Delete (Pending)</button></a>
 						</td>				 		
 				 	</tr>
 			 	<?php endforeach ?>

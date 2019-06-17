@@ -55,6 +55,29 @@ class Admin extends CI_Controller {
 		
 	}
 
+	public function update_password(){
+		$query = $this->db->where('role !=','ADMIN');
+		$query = $this->db->get('3424sds_users');
+		$users = $query->result();
+		
+		$this->load->view('admin/update_password',[
+			'data' => $users
+		]);
+	}
+
+	public function update_password_post(){
+		
+		$this->load->helper('messages');
+		$_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+		
+		$this->db->where('id', $_POST['user_id']);
+		unset($_POST['user_id']);
+		
+		$this->db->update('3424sds_users', $_POST);
+		success('Password updated successfully');
+		redirect('admin/update_password');	
+	}
+
 	public function view_doctors(){
 		$query = $this->db->where('role','DOCTOR');
 		$query = $this->db->get('3424sds_users');
