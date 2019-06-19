@@ -9,7 +9,11 @@
 					<label>Select User</label>
 					<select class='form-control' name="user_id">
 						<?php foreach ($data as $key => $user): ?>
-							<option value="<?=$user->id?>">#<?=$user->id?>-<?=$user->email?> - <?=$user->role?></option>
+							<option value="<?=$user->id?>">
+								
+								#<?=$user->id?>-<?=$user->email?> - <?=$user->role?>
+									
+							</option>
 						<?php endforeach ?>
 					</select>
 				</div>

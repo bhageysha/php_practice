@@ -21,7 +21,7 @@ class Auth extends CI_Controller {
 	public function login()
 	{
 		$this->load->helper('auth');
-
+         
 		if(!empty($_GET))
 		{
 			$this->verifyPassword($_GET['email'],$_GET['password']);
@@ -113,10 +113,55 @@ class Auth extends CI_Controller {
 
 	}
 
+	// Patient Booking Form Function
+       
+       function patient_booking(){
+ 
+       $this->load->helper('messages');
+                  
+		if(!empty($_POST)){
+          
+			$data = $_POST;
+
+			// if($data['password'] != $data['confirm_password'])
+			// redirect('auth/register');
+
+			// $rexord_exists = $this->checkIfRecordExists($data);
+
+			// if($rexord_exists){
+			// 	failure('Record already exists');
+			// 	redirect('auth/register');
+			// }
+
+			//$data['role'] = 'PATIENT';
+			unset($data['book-appointment']);
+			unset($data['specialist']);
+
+			$data['registration_date'] = date('Y-m-d H:i:s');
+
+			// $data['created_at'] = date('Y-m-d H:i:s');
+
+		//	$data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+
+		//	unset($data['confirm_password']);
+			
+			$this->db->insert('patient_booking', $data);
+			success('Registration Successful');
+			redirect('auth/login');
+				
+	}
+
+		 $this->load->view('patient/registration');
+
+	}
+
+	// End Here
+
 	function checkIfRecordExists($data){
 
 		$query = $this->db->where('email', $data['email']);
 		$query = $this->db->get('3424sds_users');
 		return count($query->result());	
 	}
+
 }

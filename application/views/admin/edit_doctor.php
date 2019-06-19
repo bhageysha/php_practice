@@ -21,8 +21,9 @@
 				
 				<div class="form-group">
 					<select name="role" class="form-control">
-						<option value="DOCTOR">DOCTOR </option>
-						<option value="EMPLOYEE">EMPLOYEE</option>
+						<option <?=$doctor->role == 'DOCTOR' ? 'selected' :''?> value="DOCTOR">DOCTOR </option>
+						<option <?=$doctor->role == 'EMPLOYEE' ? 'selected' :''?> value="EMPLOYEE">EMPLOYEE</option>
+						<option <?=$doctor->role == 'PATIENT' ? 'selected' :''?> value="PATIENT">PATIENT</option>
 					</select>
 				</div>
 				<div class="form-group">

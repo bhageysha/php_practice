@@ -1,7 +1,8 @@
 <?php $this->load->view('auth/header'); ?>
 <div class="container">
 	<div class="row">
-		<div class="col-md-4">		</div>
+		<div class="col-md-4">
+				</div>
 		<div class="col-md-4">		
 			<form method="POST" action="<?=site_url('admin/doctor_post')?>">
 				<div class="form-group">
@@ -48,7 +49,9 @@
 
 			</form>
 		</div>
-		<div class="col-md-4"></div>
+		<div class="col-md-4">
+			
+		</div>
 	</div>
 </div>
 <?php $this->load->view('auth/footer'); ?>

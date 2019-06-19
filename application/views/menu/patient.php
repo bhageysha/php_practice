@@ -1,1 +1,1 @@
-  <li><a href="<?=site_url('patient/registration')?>">Add Booking</a></li>
+  <li><a href="<?=site_url('patient/book_appointm')?>">Book Appointment</a></li>

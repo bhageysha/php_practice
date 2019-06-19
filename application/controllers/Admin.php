@@ -81,6 +81,7 @@ class Admin extends CI_Controller {
 	public function view_doctors(){
 		$query = $this->db->where('role','DOCTOR');
 		$query = $this->db->get('3424sds_users');
+		
 		$doctors = $query->result();
 		
 		$this->load->view('admin/view_doctors',[

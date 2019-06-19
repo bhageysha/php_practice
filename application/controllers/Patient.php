@@ -24,16 +24,46 @@ class Patient extends CI_Controller {
 		
 	}
 
-	public function registration(){
-		$data = [
-			'name' => 'Agarwal',
-			'field' => 'ENT',
-	    ];
+	public function book_appointm(){
 
-		$this->load->view('patient/registration',[
-			'data' => $data
+
+		$data = [];
+
+		$timeslots = getData('3424sds_time_slots');
+		
+		$query = $this->db->select('*,3424sds_users.name as doc_name,3424sds_doctor_specialisations.name as doc_spec');
+		$query = $this->db->where('role','DOCTOR');
+		$query = $this->db->from('3424sds_users');
+		$query = $this->db->join('3424sds_doctor_specialisations','3424sds_doctor_specialisations.id = 3424sds_users.specialisation_id','left');
+		$doctors = $this->db->get();
+		
+
+		$this->load->view('patient/book_appointm',[
+			'data' => $doctors->result(),
+			'time_slots' => $timeslots
 		]);
 	}
 
+	public function appointment_post(){
+		
+	
+				$this->load->helper('messages');
+
+
+			$data = $_POST;
+			
+			$data['appointment_date'] = date('Y-m-d H:i:s' ,strtotime($data['appointment_date']));
+
+			$data['patient_id'] = user_id();
+
+			
+			$data['created_at'] = date('Y-m-d H:i:s');
+
+			$this->db->insert('3424sds_appointments', $data);
+
+			success('Appointment Booked');
+
+			redirect('patient/book_appointm');
+	}
 	
 }
