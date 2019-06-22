@@ -26,7 +26,6 @@ class Patient extends CI_Controller {
 
 	public function book_appointm(){
 
-
 		$data = [];
 
 		$timeslots = getData('3424sds_time_slots');
@@ -44,14 +43,35 @@ class Patient extends CI_Controller {
 		]);
 	}
 
+	public function checkIfBookingExist($data){
+		
+		$query = $this->db->select('*');
+		$query = $this->db->where('doctor_id',$data['doctor_id']);
+		$query = $this->db->where('time_slot_id',$data['time_slot_id']);
+		$query = $this->db->from('3424sds_appointments');
+		$user = $this->db->get();
+
+		if(count($user))
+			return true;
+	}
+
 	public function appointment_post(){
 		
 	
-				$this->load->helper('messages');
+			$this->load->helper('messages');
 
 
 			$data = $_POST;
 			
+			$resp = $this->checkIfBookingExist($data);
+			
+			if($resp)
+			{
+				failure('Booking already exist');
+				redirect('patient/book_appointm');
+			}
+
+
 			$data['appointment_date'] = date('Y-m-d H:i:s' ,strtotime($data['appointment_date']));
 
 			$data['patient_id'] = user_id();

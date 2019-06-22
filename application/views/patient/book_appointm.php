@@ -9,7 +9,7 @@
 		    <form method="POST" action="<?=site_url('patient/appointment_post')?>">
            <div class="form-group">
            	<label>Date</label>
-           	<input type="text" id="_datepicker" name="appointment_date" class="form-control">
+           	<input type="text" id="datepicker" name="appointment_date" class="form-control">
            </div>
            <div class="form-group">
            	<label>Appointment</label>
