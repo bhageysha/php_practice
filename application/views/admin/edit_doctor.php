@@ -4,6 +4,7 @@
 		<div class="col-md-4">		</div>
 		<div class="col-md-4">		
 			<form method="POST" action="<?=site_url('admin/doctor_post')?>">
+				<input type="hidden" name="user_id_to_edit" value="<?=$user_id_to_edit?>">
 				<div class="form-group">
 					<label>Name</label>
 					<input type="text" value="<?=$doctor->name?>" name="name" class="form-control" />

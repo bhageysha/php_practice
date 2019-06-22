@@ -3,7 +3,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<h4 class="text-center">
-				Admin Dashboard
+				Welcome To Admin Dashboard
 			</h4>
 		</div>
 	</div>

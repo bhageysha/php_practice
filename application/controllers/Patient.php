@@ -55,7 +55,7 @@ class Patient extends CI_Controller {
 			$data['appointment_date'] = date('Y-m-d H:i:s' ,strtotime($data['appointment_date']));
 
 			$data['patient_id'] = user_id();
-
+            
 			
 			$data['created_at'] = date('Y-m-d H:i:s');
 

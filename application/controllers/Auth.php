@@ -24,11 +24,15 @@ class Auth extends CI_Controller {
          
 		if(!empty($_GET))
 		{
+		//	echo "<pre>";
+		//	print_r($_GET);
+		//	exit;
+
 			$this->verifyPassword($_GET['email'],$_GET['password']);
 
 			if(get_user()->role == 'PATIENT')
 			   {
-				redirect('patient/index');
+			   					redirect('patient/index');
 			   }
 			  else if(get_user()->role == 'DOCTOR')
 			    {

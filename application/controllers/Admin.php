@@ -50,10 +50,10 @@ class Admin extends CI_Controller {
 		$doctor = $query->result();
 		
 		$this->load->view('admin/edit_doctor',[
-			'doctor' => $doctor[0]
+			'doctor' => $doctor[0],
+			'user_id_to_edit' => $id
 		]);
-		
-	}
+			}
 
 	public function update_password(){
 		$query = $this->db->where('role !=','ADMIN');
@@ -88,37 +88,23 @@ class Admin extends CI_Controller {
 			'doctors' => $doctors 
 		]);
 
-
-
 	}
 
 	public function doctor_post(){
 
-
 		$this->load->helper('messages');
 
-
 			$data = $_POST;
+			echo "<pre>";
+			print_r($data);
+			$record_id= $data['user_id_to_edit'];
+			unset($data['user_id_to_edit']);
+			$this->db->where('id', $record_id);
+			$this->db->update('3424sds_users', $data);
 
-			
-			$rexord_exists = $this->checkIfRecordExists($data);
+			success('Record updated');
 
-			if($rexord_exists){
-				failure('Record already exists');
-				redirect('admin/add_doctor');
-			}
-
-			$data['registration_date'] = date('Y-m-d H:i:s');
-
-			$data['created_at'] = date('Y-m-d H:i:s');
-
-			$data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
-			
-			$this->db->insert('3424sds_users', $data);
-
-			success('Registration Successful');
-
-			redirect('admin/add_doctor');
+			redirect('admin/edit_doctor/'.$record_id);
 		
 	}
 
