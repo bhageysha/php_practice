@@ -47,11 +47,12 @@ class Patient extends CI_Controller {
 		
 		$query = $this->db->select('*');
 		$query = $this->db->where('doctor_id',$data['doctor_id']);
+		$query = $this->db->where('doctor_id', $data['doctor_id']);
 		$query = $this->db->where('time_slot_id',$data['time_slot_id']);
 		$query = $this->db->from('3424sds_appointments');
-		$user = $this->db->get();
+		$appointments = $this->db->get();
 
-		if(count($user))
+		if(count($appointments))
 			return true;
 	}
 
@@ -84,6 +85,23 @@ class Patient extends CI_Controller {
 			success('Appointment Booked');
 
 			redirect('patient/book_appointm');
+	}
+
+	function show_bookings(){
+		
+		$query = $this->db->select('*,3424sds_time_slots.name as time_slots_name,3424sds_users.name as doctor_name');
+		$query = $this->db->where('patient_id', user_id());
+		$query = $this->db->from('3424sds_appointments');
+		
+		$query = $this->db->join('3424sds_time_slots','3424sds_time_slots.id = 3424sds_appointments.time_slot_id','left');
+
+		$query = $this->db->join('3424sds_users','3424sds_users.id = 3424sds_appointments.doctor_id','left');
+
+		$bookings = $this->db->get();
+		
+		$this->load->view('patient/show_bookings',[
+			'bookings' => $bookings->result()
+		]);
 	}
 	
 }
