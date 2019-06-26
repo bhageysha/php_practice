@@ -16,7 +16,7 @@
            	<select name="doctor_id" class="form-control">
            	<option selected disabled>Select Doctor</option>
             <?php foreach ($data as $key => $doc): ; ?>
-           	    <option value="<?=$doc->id?>"><?=$doc->doc_name?>- <?=$doc->doc_spec?></option>
+           	    <option value="<?=$doc->doctor_id?>"><?=$doc->doc_name?>- <?=$doc->doc_spec?></option>
             <?php endforeach ?>
           
            </select>

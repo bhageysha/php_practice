@@ -21,7 +21,6 @@ class Admin extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('admin/home');
-		
 	}
 
 	public function add_doctor(){
@@ -38,9 +37,9 @@ class Admin extends CI_Controller {
 	public function delete_doctor($id){
 		$this->load->helper('messages');
 		$this ->db->where('id', $id);
-        $this ->db->delete('3424sds_users');
-        success('Record Deleted');
-        redirect('admin/view_doctors');
+    $this ->db->delete('3424sds_users');
+    success('Record Deleted');
+    redirect('admin/view_doctors');
 	}
 
 	public function edit_doctor($id){

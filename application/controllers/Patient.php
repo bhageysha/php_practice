@@ -30,7 +30,7 @@ class Patient extends CI_Controller {
 
 		$timeslots = getData('3424sds_time_slots');
 		
-		$query = $this->db->select('*,3424sds_users.name as doc_name,3424sds_doctor_specialisations.name as doc_spec');
+		$query = $this->db->select('*,3424sds_users.name as doc_name,3424sds_doctor_specialisations.name as doc_spec,3424sds_users.id as doctor_id');
 		$query = $this->db->where('role','DOCTOR');
 		$query = $this->db->from('3424sds_users');
 		$query = $this->db->join('3424sds_doctor_specialisations','3424sds_doctor_specialisations.id = 3424sds_users.specialisation_id','left');
@@ -44,15 +44,16 @@ class Patient extends CI_Controller {
 	}
 
 	public function checkIfBookingExist($data){
-		
+	
 		$query = $this->db->select('*');
 		$query = $this->db->where('doctor_id',$data['doctor_id']);
-		$query = $this->db->where('doctor_id', $data['doctor_id']);
 		$query = $this->db->where('time_slot_id',$data['time_slot_id']);
+		$query = $this->db->where(
+			'appointment_date', date('Y-m-d' ,strtotime($data['appointment_date'])));
 		$query = $this->db->from('3424sds_appointments');
 		$appointments = $this->db->get();
-
-		if(count($appointments))
+		
+		if(count($appointments->result()))
 			return true;
 	}
 
@@ -63,7 +64,7 @@ class Patient extends CI_Controller {
 
 
 			$data = $_POST;
-			
+		
 			$resp = $this->checkIfBookingExist($data);
 			
 			if($resp)
@@ -76,7 +77,6 @@ class Patient extends CI_Controller {
 			$data['appointment_date'] = date('Y-m-d H:i:s' ,strtotime($data['appointment_date']));
 
 			$data['patient_id'] = user_id();
-            
 			
 			$data['created_at'] = date('Y-m-d H:i:s');
 
@@ -98,7 +98,7 @@ class Patient extends CI_Controller {
 		$query = $this->db->join('3424sds_users','3424sds_users.id = 3424sds_appointments.doctor_id','left');
 
 		$bookings = $this->db->get();
-		
+	
 		$this->load->view('patient/show_bookings',[
 			'bookings' => $bookings->result()
 		]);
