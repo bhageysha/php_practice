@@ -10,12 +10,15 @@
 					<th>Appointment date</th>
 					<th>Approve Appointment</th>
 				</tr>
-				<tr>
-					<td>Test patient</td>
-					<td>5</td>
-					<td>2019-06-27</td>
-					<td><button class="btn-success">Approve</button></td>
-				</tr>
+
+						<?php foreach ($doctors as $key => $doc): ?>
+				 	<tr>
+						<td><?=$doc->doctor_id?></td>				 		
+						<td><?=$doc->time_slot_id?></td>				 		
+						<td><?=$doc->appointment_date?></td>	
+						<td><button class="btn-success"><?=$doc->is_approved?></button></td>				 					 						 		
+				 	</tr>
+			 	<?php endforeach ?>
 
 			</table>
 
