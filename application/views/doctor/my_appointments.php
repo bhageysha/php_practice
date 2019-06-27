@@ -11,12 +11,12 @@
 					<th>Approve Appointment</th>
 				</tr>
 
-						<?php foreach ($doctors as $key => $doc): ?>
+						<?php foreach ($doctors as $key => $doc):  ?>
 				 	<tr>
-						<td><?=$doc->doctor_id?></td>				 		
+						<td><?=$doc->patient_id?></td>				 		
 						<td><?=$doc->time_slot_id?></td>				 		
 						<td><?=$doc->appointment_date?></td>	
-						<td><button class="btn-success"><?=$doc->is_approved?></button></td>				 					 						 		
+						<td><button class="btn-success appoint_id" data-id="<?=$doc->id?>"><?=$doc->is_approved ? 'Approved' : 'Pending'?></button></td>				 					 						 		
 				 	</tr>
 			 	<?php endforeach ?>
 
