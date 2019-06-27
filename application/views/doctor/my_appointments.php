@@ -11,6 +11,7 @@
 					<th>Approve Appointment</th>
 				</tr>
 
+
 						<?php foreach ($doctors as $key => $doc):  ?>
 				 	<tr>
 						<td><?=$doc->patient_id?></td>				 		
