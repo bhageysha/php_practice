@@ -10,13 +10,14 @@
 					<th>Appointment date</th>
 					<th>Approve Appointment</th>
 				</tr>
+			
 				<tr>
-					<td>Test patient</td>
+					<td>Test Patient</td>
 					<td>5</td>
 					<td>2019-06-27</td>
 					<td><button class="btn-success">Approve</button></td>
 				</tr>
-
+   			
 			</table>
 
 		</div>
