@@ -29,7 +29,7 @@ class Patient extends CI_Controller {
 		$data = [];
 
 		$timeslots = getData('3424sds_time_slots');
-		
+	
 		$query = $this->db->select('*,3424sds_users.name as doc_name,3424sds_doctor_specialisations.name as doc_spec,3424sds_users.id as doctor_id');
 		$query = $this->db->where('role','DOCTOR');
 		$query = $this->db->from('3424sds_users');
@@ -64,7 +64,8 @@ class Patient extends CI_Controller {
 
 
 			$data = $_POST;
-		
+			
+	
 			$resp = $this->checkIfBookingExist($data);
 			
 			if($resp)

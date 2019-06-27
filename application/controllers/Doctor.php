@@ -25,8 +25,8 @@ class Doctor extends CI_Controller {
 	}
 
 	public function my_appointments()
-	{
-		
+	{	
+	
 		$query = $this->db->from('3424sds_appointments');
 		$query = $this->db->where('doctor_id', user_id());
 		$doctors = $this->db->get();
