@@ -24,6 +24,15 @@ class Doctor extends CI_Controller {
 		
 	}
 
+	public function  set_is_approval_value(){
+		
+	  $this->db->where('id', $_POST['id']);
+
+		$this->db->update('3424sds_appointments', ['is_approved' => $_POST['is_approved']]);
+
+		echo $_POST['is_approved'];
+	}
+
 	public function my_appointments()
 	{	
 	

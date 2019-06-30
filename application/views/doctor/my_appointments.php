@@ -17,7 +17,13 @@
 						<td><?=$doc->patient_id?></td>				 		
 						<td><?=$doc->time_slot_id?></td>				 		
 						<td><?=$doc->appointment_date?></td>	
-						<td><button class="btn-success appoint_id" data-id="<?=$doc->id?>"><?=$doc->is_approved ? 'Approved' : 'Pending'?></button></td>				 					 						 		
+						<td>
+
+							<input data-id="<?=$doc->id?>" 	 class="appoint_id" type="checkbox" data-on="Approved" data-off="Canceled" 
+							<?=$doc->is_approved ? 'checked' : ''?> 
+							data-toggle="toggle">
+
+						</td>				 					 						 		
 				 	</tr>
 			 	<?php endforeach ?>
 

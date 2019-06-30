@@ -94,8 +94,7 @@ class Admin extends CI_Controller {
 		$this->load->helper('messages');
 
 			$data = $_POST;
-			echo "<pre>";
-			print_r($data);
+	
 			$record_id= $data['user_id_to_edit'];
 			unset($data['user_id_to_edit']);
 			$this->db->where('id', $record_id);
