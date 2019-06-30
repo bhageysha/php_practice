@@ -11,7 +11,7 @@ jQuery(function(){
  		
 		 		 	$.ajax({
 					  method: "POST",
-					  url: "http://dev.com/php_morning_batch/index.php/doctor/set_is_approval_value",
+					  url: window.site_url+"/doctor/set_is_approval_value",
 					  data: { is_approved: is_approved,id:id}
 					})
 					  .done(function( res ) {
