@@ -42,6 +42,7 @@ function getData($table_name){
 
 function getFilteredData($table_name,$where){
 	$ci = &get_instance();
+	
 	foreach ($where as $key => $single_cond){
 			$query = $ci->db->where($key,$single_cond);
 	}

@@ -94,18 +94,9 @@ class Admin extends CI_Controller {
 	public function view_doctors(){
 		$where = [
 			'role' => 'DOCTOR',
-			'id' => 7,
-			
 		];
 
-		$users = getFilteredData('3424sds_users',$where);
-		echo "<pre>";
-		print_r($users);
-		exit;
-		$query = $this->db->where('role','DOCTOR');
-		$query = $this->db->get('3424sds_users');
-		
-		$doctors = $query->result();
+		$doctors = getFilteredData('3424sds_users',$where);
 		
 		$this->load->view('admin/view_doctors',[
 			'doctors' => $doctors 
