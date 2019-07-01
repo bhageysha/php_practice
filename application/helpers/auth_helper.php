@@ -34,8 +34,20 @@ function get_user_role(){
 
 function getData($table_name){
 	$ci = &get_instance();
-    $query = $ci->db->from(trim($table_name));
+  $query = $ci->db->from(trim($table_name));
 	$query = $ci->db->get();
 	return $query->result();	
 
+}
+
+function getFilteredData($table_name,$where){
+	$ci = &get_instance();
+	foreach ($where as $key => $single_cond){
+			$query = $ci->db->where($key,$single_cond);
+	}
+
+	$query = $ci->db->get('3424sds_users');
+	return $query->result();	
+
+	
 }

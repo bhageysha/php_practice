@@ -8,7 +8,12 @@
   
 	<title></title>
 </head>
-<body>
+<?php 
+  $cont_name= $this->router->fetch_class();
+  $image = getImage($cont_name);
+
+ ?>
+<body class="background" style="background:url(<?=$image?>);background-size: cover;background-repeat: no-repeat">
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->

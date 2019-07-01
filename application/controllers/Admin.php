@@ -24,7 +24,7 @@ class Admin extends CI_Controller {
 	}
 
 	public function add_doctor(){
-
+	
 		// $query = $this->db->where('email', $data['email']);/**/
 		$query = $this->db->get('3424sds_doctor_specialisations');
 		$specialisations = $query->result();
@@ -34,7 +34,21 @@ class Admin extends CI_Controller {
 		]);
 	}
 
+	public function checkIfBookingExistForDoc($doc_id){
+ 		$query = $this->db->where('doctor_id', $doc_id);
+    $query = $this->db->get('3424sds_appointments');
+    return count($query->result());
+	} 
+
 	public function delete_doctor($id){
+		
+		$this->load->helper('messages');
+
+		if($this->checkIfBookingExistForDoc($id)){
+			failure('Appointments exists for this doc. Cant delete');
+    	redirect('admin/view_doctors');
+		}
+
 		$this->load->helper('messages');
 		$this ->db->where('id', $id);
     $this ->db->delete('3424sds_users');
@@ -78,6 +92,16 @@ class Admin extends CI_Controller {
 	}
 
 	public function view_doctors(){
+		$where = [
+			'role' => 'DOCTOR',
+			'id' => 7,
+			
+		];
+
+		$users = getFilteredData('3424sds_users',$where);
+		echo "<pre>";
+		print_r($users);
+		exit;
 		$query = $this->db->where('role','DOCTOR');
 		$query = $this->db->get('3424sds_users');
 		
