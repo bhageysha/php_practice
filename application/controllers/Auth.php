@@ -24,29 +24,24 @@ class Auth extends CI_Controller {
          
 		if(!empty($_GET))
 		{
-		//	echo "<pre>";
-		//	print_r($_GET);
-		//	exit;
 
 			$this->verifyPassword($_GET['email'], $_GET['password']);
+			
+			$otp = generate_otp();
 
-			if(get_user()->role == 'PATIENT')
-			   {
-			   					redirect('patient/index');
-			   }
-			  else if(get_user()->role == 'DOCTOR')
-			    {
-					redirect('doctor/index');
-			    } 
-			    else if(get_user()->role == 'ADMIN')
-			       {
-					redirect('admin/index');
-			        } 
-			    else
-			        {
-					redirect('auth/logout');
-			        }
-        }
+			$this->db->where('email', trim($_GET['email']));
+			
+			$this->db->update('3424sds_users', [
+				'otp_code' => $otp,
+				'otp_verified' => 0,
+			]);
+
+			send_sms(get_phone(),$otp);
+			
+			redirect('otp/verify/'.user_id());
+
+			
+     }
 
 		$this->load->view('auth/login');
 		
