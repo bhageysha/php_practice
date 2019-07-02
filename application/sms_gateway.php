@@ -1,0 +1,1 @@
+http://sms.thinkbuyget.com/api.php?username=Gurpreet&password=472186&sender=DGENIT&sendto=919877253267&message=hello  
