@@ -5,6 +5,16 @@ function auth_force(){
 		redirect('auth/logout');
 }
 
+function send_mail($email,$subject,$message){
+
+		$this->load->library('email');
+		$this->email->from('info@theheavenhomes.com', 'Test Company');
+		$this->email->to($email);
+		$this->email->subject($subject);
+		$this->email->message($message);
+		$this->email->send();
+}
+
 function get_user(){
 	$ci = &get_instance();
 	if(empty($ci->session->userdata('user')))

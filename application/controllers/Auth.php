@@ -20,6 +20,9 @@ class Auth extends CI_Controller {
 	 */
 	public function login()
 	{
+
+		send_mail('gurpreet2501@gmail.com','Test','Testing Email');
+
 		$this->load->helper('auth');
          
 		if(!empty($_GET))
@@ -35,11 +38,8 @@ class Auth extends CI_Controller {
 				'otp_code' => $otp,
 				'otp_verified' => 0,
 			]);
-
-			send_sms(get_phone(),$otp);
-			
+							send_sms(get_phone(),$otp);
 			redirect('otp/verify/'.user_id());
-
 			
      }
 

@@ -26,6 +26,7 @@ class Otp extends CI_Controller {
 	}
 
 	function otp_verify_post(){
+		
 		$this->load->helper('messages');	
 		if(empty($_POST))
 			redirect('auth/logout');
