@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+use App\Libs\Sms;
 class Auth extends CI_Controller {
 
 	/**
@@ -20,6 +20,7 @@ class Auth extends CI_Controller {
 	 */
 	public function login()
 	{
+
 
 		send_mail('gurpreet2501@gmail.com','Test','Testing Email');
 
